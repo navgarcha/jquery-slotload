@@ -10,7 +10,7 @@ $('#img-wrapper, #img-wrapper-more').slotload({
     loadingClass: 'slot-effect',
     onComplete: function() {
         // Apply a green border to each image once it's loaded and finished animating
-        $(this).parent().css('border', '1px solid green');
+        $(this).css('border', '1px solid green');
     }
 });
 ```
