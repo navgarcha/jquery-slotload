@@ -27,17 +27,6 @@
 				img.replaceWith(imgWrapper);
 
 				setTimeout(function() {
-					if(settings.arrangeOnLoad) {
-						var parentWrapper = imgWrapper.removeClass('loading').parent(),
-							loadedItems = imgWrapper.siblings().not('.loading');
-
-						if(loadedItems.length) {
-							imgWrapper.insertAfter(loadedItems.last());
-						} else {
-							imgWrapper.prependTo(parentWrapper);
-						}
-					}
-
 					loadedImg.animate({
 						'top': 0
 					}, {
@@ -65,7 +54,6 @@
 		selector: 'img',
 		speed: 800,
 		baseDelay: 500,
-		arrangeOnLoad: false,
 		placeholder: false,
 		onComplete: function() {}
 	};
