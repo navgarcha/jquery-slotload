@@ -18,11 +18,10 @@
         
         this.find(settings.selector).each(function() {
             var img = $(this),
-                imgSrc = img.data('load'),
-                imgWrapper = img.parent();
+                imgSrc = img.data('load');
             
             $('<img />').load(function() {
-                var loadedImg = $(this).hide().appendTo(imgWrapper),
+                var loadedImg = $(this).hide().insertAfter(img),
                     imgHeight = loadedImg.height();
                 
                 // Only required to get accurate height
