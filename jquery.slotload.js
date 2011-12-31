@@ -12,22 +12,30 @@
 */
 
 (function($) {
-	$.fn.slotload = function(options) {
-		var settings = $.extend({}, $.fn.slotload.settings, options),
-			showDelay = Math.floor(settings.baseDelay + (Math.random() * 1000));
+    $.fn.slotload = function(options) {
+    	var settings = $.extend({}, $.fn.slotload.settings, options),
+			showDelay = Math.floor(settings.baseDelay + (Math.random() * 500));
 		
 		this.find(settings.selector).each(function() {
-			var img = $(this).css('visibility', 'hidden'),
-				imgHeight = img.height();
+			var img = $(this),
+                imgSrc = img.data('load'),
+                imgWrapper = img.parent();
 
 			$('<img />').load(function() {
-				var loadedImg = $(this).wrap('<div class="loading" style="display:inline-block; overflow:hidden;" />'),
-					imgWrapper = loadedImg.parent();
-
-				img.replaceWith(imgWrapper);
+                var loadedImg = $(this).hide().appendTo(imgWrapper),
+                    imgHeight = loadedImg.height();
+                
+                // Only required to get accurate height
+                loadedImg.remove();
+                
+                // Setup img elm for slot effect
+				img.attr('src', imgSrc).css({
+        			'position': 'relative',
+    				'top': -(imgHeight + 50)
+    			}).wrap('<div style="display:inline-block; overflow:hidden;" />');
 
 				setTimeout(function() {
-					loadedImg.animate({
+					img.animate({
 						'top': 0
 					}, {
 						duration: settings.speed,
@@ -39,10 +47,7 @@
 						}
 					});
 				}, showDelay);
-			}).attr('src', img.attr('src')).css({
-				'position': 'relative',
-				'top': -(imgHeight + 50)
-			});
+			}).attr('src', imgSrc);
 		});
 		
 		// Ensure plugin is chainable
@@ -51,7 +56,7 @@
 	
 	// Public settings
 	$.fn.slotload.settings = {
-		selector: 'img',
+		selector: 'img[data-load]',
 		speed: 800,
 		baseDelay: 500,
 		onComplete: function() {}
