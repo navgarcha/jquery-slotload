@@ -12,8 +12,8 @@
 */
 
 (function($) {
-	$.fn.randomizer = function(options) {
-		var settings = $.extend({}, $.fn.randomizer.settings, options),
+	$.fn.slotload = function(options) {
+		var settings = $.extend({}, $.fn.slotload.settings, options),
 			showDelay = Math.floor(settings.baseDelay + (Math.random() * 1000));
 		
 		this.find(settings.selector).each(function() {
@@ -50,11 +50,10 @@
 	};
 	
 	// Public settings
-	$.fn.randomizer.settings = {
+	$.fn.slotload.settings = {
 		selector: 'img',
 		speed: 800,
 		baseDelay: 500,
-		placeholder: false,
 		onComplete: function() {}
 	};
 	
