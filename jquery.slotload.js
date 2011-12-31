@@ -17,9 +17,10 @@
             showDelay = Math.floor(settings.baseDelay + (Math.random() * 500));
         
         this.find(settings.selector).each(function() {
-            var img = $(this),
+            var wrapper = $('<div class="slotload-img-wrapper '+ settings.loadingClass +'" style="display:inline-block; overflow:hidden;" />'),
+                img = $(this).wrap(wrapper),
                 imgSrc = img.data('load');
-            
+
             $('<img />').load(function() {
                 var loadedImg = $(this).hide().insertAfter(img),
                     imgHeight = loadedImg.height();
@@ -31,7 +32,7 @@
                 img.attr('src', imgSrc).css({
                     'position': 'relative',
                     'top': -(imgHeight + 50)
-                }).wrap('<div style="display:inline-block; overflow:hidden;" />');
+                });
                 
                 setTimeout(function() {
                     img.animate({
@@ -39,13 +40,11 @@
                     }, {
                         duration: settings.speed,
                         easing: 'elasticOut',
-                        complete: function() {
-                            if(typeof settings.onComplete === 'function') {
-                                settings.onComplete();
-                            }
-                        }
-                    });
+                        complete: settings.onComplete
+                    }).parent().removeClass(settings.loadingClass);
                 }, showDelay);
+            }).error(function() {
+                img.parent().removeClass(settings.loadingClass);
             }).attr('src', imgSrc);
         });
     
@@ -56,6 +55,7 @@
     // Public settings
     $.fn.slotload.settings = {
         selector: 'img[data-load]',
+        loadingClass: 'loading',
         speed: 800,
         baseDelay: 500,
         onComplete: function() {}

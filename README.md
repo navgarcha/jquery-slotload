@@ -4,7 +4,14 @@
 ## Example Usage
 
 ``` javascript
-$('#images-wrapper').slotload()
+$('#images-wrapper').slotload();
+
+$('#img-wrapper, #img-wrapper-more').slotload({
+    loadingClass: 'slot-effect',
+    onComplete: function() {
+        $(this).parent().css('border-color', 'green');
+    }
+});
 ```
 
 ## Contact
