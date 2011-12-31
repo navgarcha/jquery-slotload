@@ -9,7 +9,8 @@ $('#images-wrapper').slotload();
 $('#img-wrapper, #img-wrapper-more').slotload({
     loadingClass: 'slot-effect',
     onComplete: function() {
-        $(this).parent().css('border-color', 'green');
+        // Apply a green border to the image wrapper we created
+        $(this).parent().css('border', '1px solid green');
     }
 });
 ```
