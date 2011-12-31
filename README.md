@@ -1,5 +1,5 @@
 # jQuery SlotLoad Plugin v0.1
-
+`<img data-load="imgs/product_pic.jpg" src="imgs/blank.gif" />`
 
 ## Example Usage
 
