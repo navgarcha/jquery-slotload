@@ -15,6 +15,10 @@ $('#img-wrapper, #img-wrapper-more').slotload({
 });
 ```
 
+## Demo
+
+http://jsfiddle.net/navgarcha/a53Jp/embedded/result/
+
 ## Contact
 * Author: Navkaran Garcha
 * Mail: nav_garcha@hotmail.co.uk
