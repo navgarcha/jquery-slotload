@@ -14,11 +14,11 @@
 (function($) {
     $.fn.slotload = function(options) {
         var settings = $.extend({}, $.fn.slotload.settings, options),
-            showDelay = Math.floor(settings.baseDelay + (Math.random() * 500));
+            showDelay = Math.floor(settings.baseDelay + (Math.random() * 500)),
+            elmWrapper = '<div class="slotload-img-wrapper '+ settings.loadingClass +'" style="display:inline-block; overflow:hidden;" />';
         
         this.find(settings.selector +'[data-load]').each(function() {
-            var wrapper = $('<div class="slotload-img-wrapper '+ settings.loadingClass +'" style="display:inline-block; overflow:hidden;" />'),
-                img = $(this).wrap(wrapper),
+            var img = $(this).wrap(elmWrapper),
                 imgSrc = img.data('load');
 
             $('<img />').load(function() {
