@@ -16,7 +16,7 @@
         var settings = $.extend({}, $.fn.slotload.settings, options),
             showDelay = Math.floor(settings.baseDelay + (Math.random() * 500));
         
-        this.find(settings.selector).each(function() {
+        this.find(settings.selector +'[data-load]').each(function() {
             var wrapper = $('<div class="slotload-img-wrapper '+ settings.loadingClass +'" style="display:inline-block; overflow:hidden;" />'),
                 img = $(this).wrap(wrapper),
                 imgSrc = img.data('load');
@@ -54,7 +54,7 @@
     
     // Public settings
     $.fn.slotload.settings = {
-        selector: 'img[data-load]',
+        selector: 'img',
         loadingClass: 'loading',
         speed: 800,
         baseDelay: 500,
