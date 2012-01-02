@@ -30,13 +30,13 @@
                 
                 // Setup img elm for slot effect
                 img.attr('src', imgSrc).css({
-                    'position': 'relative',
-                    'top': -(imgHeight + 50)
+                    position: 'relative',
+                    top: -(imgHeight + 50)
                 });
                 
                 setTimeout(function() {
                     img.animate({
-                        'top': 0
+                        top: 0
                     }, {
                         duration: settings.speed,
                         easing: 'elasticOut',
